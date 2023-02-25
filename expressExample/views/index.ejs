@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- This is an example of an HTML comment.  It does not affect the page in any other way, but it helps us to understanding coders' intent -->
-    <title><%= title %></title>
+    <title><%= title %></title> <!-- There is a variable title placeholder here-->
     
     <!-- The next lines allow us to link to Bootstrap tools and use those classes for the rest of our page -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,34 +15,8 @@
   </head>
   <body>
   
-    <!-- starts our main navigation bar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <!-- The next three lines set up our logo with a link to the home page/view -->
-        <a class="navbar-brand" href="/">
-          <img src="/images/logo.png" alt="LOGO" width="60" height="40">
-        </a>
-        <!-- The next lines set up a button to display our navigation options when the screen is smaller -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- This starts the content for the navigation bar -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- We create an unordered list of navigation links/items.  The first one is a home link -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link-active" aria-current="page" href="/"> Home </a>
-            </li>
-            <!-- We will need to add a submenu for customer information and entry -->
-            <!-- We will also need to add a submenu for employee information and entry -->
-            <!-- We may need to add a submenu for product information and entry -->
-            <!-- We will need to add a link for registration -->
-            <!-- We will need to add a link for login -->
-          </ul>
-        </div> <!-- closes the collapse/navbar-collapse navbar content -->
-      </div> <!-- closes our container-fluid section -->
-    </nav>
+    <%- include ('./partials/header') -%> <!-- includes header partial with navigation bar -->
+
     <!-- Sets up a welcome message.  We'll talk about the title variable placeholder next week. -->
     <h1 class="text-center">  <%= title %></h1>
     <p class="text-center"> Welcome to <%= title %></p>
