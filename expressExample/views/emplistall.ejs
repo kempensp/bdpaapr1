@@ -13,12 +13,14 @@
     <table>
       <tr>
         <th>Number</th><th>First Name</th><th>Last Name</th>
+        <th>Job Title</th>
       </tr>
       <%for (var result in resultarray){%>
         <tr>
         <td><%=resultarray[result].employeeNumber%></td> 
         <td><%=resultarray[result].firstName%></td>  
         <td><%=resultarray[result].lastName%></td>
+        <td><%=resultarray[result].jobTitle%></td>
         </tr> 
         <%}%>
     </table>
