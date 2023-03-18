@@ -10,7 +10,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-    const httpRequest = require('http');
+    const httpRequest = require('http'); //This may end up being https in other situations
 
     const options = {
       method: 'GET',
@@ -30,13 +30,11 @@ router.get('/', function(req, res, next) {
       response.on('end', () => {
         let responseParsed=JSON.parse(responseData);
         let responseArray=responseParsed.records;
-        console.log('Response: ', responseArray);
+        console.log('Response: ', responseArray); //debugging code to test
         res.render('emplistall', { title: 'Products R Us Employee List' , resultarray: responseArray});
       });
     });
-    
     request.on('error', error => console.log('ERROR', error));
-    
     request.end();
 
 
