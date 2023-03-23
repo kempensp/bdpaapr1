@@ -3,8 +3,8 @@ var express = require('express');
 // var router = express.Router();
 const fetch = require('node-fetch');
 var cred = {
-    "username": "bdpamked_adminscott",
-    "password": "D3mon5now#"
+    "username": "INSERT YOUR USERNAME HERE",
+    "password": "INSERT YOUR PASSWORD HERE"
 };
 
 console.log("RESTAPI IP being used ", process.env.restapi);
