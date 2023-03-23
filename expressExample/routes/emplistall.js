@@ -16,8 +16,9 @@ router.get('/', function(req, res, next) {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyIjoiYmRwYW1rZWRfYWRtaW5zY290dCJ9LCJpYXQiOjE2NzkxNDg5NTIsImV4cCI6MTY3OTE4NDk1Mn0._WKLH7vM7YoOL1FJlKorPvb1VWXj9l5-dUDZrLTtUjw',
-        'content-type': 'application/json'
+         'content-type': 'application/json'
       }};
+    //Authorization header will need to be updated
     
     const request = httpRequest.request('http://bdpamkedev.com/api/v5/employees/?pageNo=1&pageSize=100', options, response => {
       console.log('Status', response.statusCode);
