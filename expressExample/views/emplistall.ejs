@@ -13,15 +13,21 @@
     <div class="table-responsive">
     <table class="table table-hover">
       <tr>
-        <th>Number</th><th>First Name</th><th>Last Name</th>
+        <th>Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Job Title</th>
+        <th>Extension</th>
+        <th>Email</th>
       </tr>
       <%for (var result in resultarray){%>
         <tr>
-        <td><%=resultarray[result].employeeNumber%></td> 
-        <td><%=resultarray[result].firstName%></td>  
-        <td><%=resultarray[result].lastName%></td>
-        <td><%=resultarray[result].jobTitle%></td>
+        <td> <%= resultarray[result].employeeNumber %> </td> 
+        <td> <%= resultarray[result].firstName %> </td>  
+        <td> <%= resultarray[result].lastName %> </td>
+        <td> <%= resultarray[result].jobTitle %> </td>
+        <td> <%= resultarray[result].extension %> </td>
+        <td> <%= resultarray[result].email %> </td>
         </tr> 
         <%}%>
     </table>
