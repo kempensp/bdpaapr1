@@ -3,8 +3,8 @@ var express = require('express');
 //var router = express.Router();
 var fetch = require('node-fetch'); //npm i node-fetch@2.6.1 works best at the moment
 var cred = {
-    "username": "PUT YOUR USERNAME HERE",
-    "password": "PUT YOUR PASSWORD HERE"
+    "username": "INSERT YOUR USERNAME HERE",
+    "password": "INSERT YOUR PASSWORD HERE"
 };
 global.db_token_ip="bdpamkedev.com" //Hard coded address since environment variables aren't set
 //console.log("RESTAPI IP being used ", process.env.restapi);
@@ -33,73 +33,4 @@ var methods = {
             })
     }};
 
-    exports.data = methods;
-//     dbCallsGet: async function (dburl, dbstring, dbmethod, dbbody, rtnejs) {
-//         console.log('dburl is ', dburl);
-//         console.log('function get dbcall', dburl, dbstring, dbmethod, dbbody, rtnejs);
-//         var empurl = dburl + dbstring;
-//         var bearer = 'Bearer ' + global.DB_token;
-//         const result = await fetch(empurl, (
-//             empurl, {
-//                 method: dbmethod,
-//                 withCredentials: true,
-//                 credentials: 'include',
-//                 headers: {
-//                     'Authorization': bearer,
-//                     'Content-Type': 'application/json'
-//                 }
-//             }))
-//             .then((response) => response.json())
-//             .then((data) => {
-
-//                 global.DB_data = data;
-
-
-//                 global.DB_data = data;
-//                 rtnResults = data;
-//                 return rtnResults;
-//             })
-//             .catch((error) => {
-//                 console.error('Error:', error);
-//                 rtnResults = error
-//                 return rtnResults
-//             });
-//     },
-//     dbCallspost: async function (dburl, dbstring, dbmethod, dbbody) {
-
-//         console.log('dbCallspost before dbcall ', dburl, dbstring, dbmethod, dbbody);
-//         var empurl = dburl + dbstring;
-//         var bearer = 'Bearer ' + global.DB_token;
-//         const result = await fetch(empurl, (
-//             empurl, {
-//                 method: dbmethod,
-//                 withCredentials: true,
-//                 credentials: 'include',
-//                 headers: {
-//                     'Authorization': bearer,
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: dbbody
-//             }))
-//             .then((response) => response.json())
-//             .then((data) => {
-//                 global.DB_data = data;
-//                 let DataToReturn = data;
-//                 console.log('Success 41:', data);
-//                 //console.log('Success 41a:',DataToReturn);
-//                 global.DB_data = data;
-//                 rtnResults = data;
-//                 //console.log('golbal:' , global.DB_data);
-//                 //var resultstatus = response.message
-//                 //rtnres= res.render('empdel', { resultdata:  data, resultstatus: data.totalCount} )
-
-//                 //console.log('aft dbcall before exit');
-//                 var sqlServerObj = {
-//                     resultx: data,
-//                 };
-//                 return rtnResults;
-//             })
-//         console.log("here here")
-//     }
-// };
-
+exports.data = methods;

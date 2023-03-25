@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
         'Authorization': 'Bearer ' + global.DB_token,
         'content-type': 'application/json'
       }};
+    //Authorization header will need to be updated
     
     const request = httpRequest.request('http://bdpamkedev.com/api/v5/employees/?pageNo=1&pageSize=100', options, response => {
       console.log('Status', response.statusCode);
