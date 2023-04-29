@@ -111,13 +111,15 @@ const deriveKeyFromPassword = async (passwordString, body, creator, saltBuffer) 
   // Return the key and salt as hexadecimal strings
   const newUser = {};
     newUser.id=body.employeeNumber;
-    newUser.userName=body.username;
+    newUser.Username=body.username; //
     newUser.salt=saltString;
     newUser.key=keyString;
+    newUser.role=body.role;
     newUser.employeeNumber=body.employeeNumber;
     newUser.createdBy=creator; //Put in your own.
     newUser.modifiedBy=creator;
-    console.log("generator call", JSON.stringify(newUser));
+    var newUserBody=JSON.stringify(newUser);
+    console.log("generator call", newUserBody);
       const fetch = require('node-fetch'); //We may need to npm install this...
     const varHttpRequest = 'https://bdpamkedev.com/api/v5/users';
   fetch(varHttpRequest, {
@@ -126,7 +128,7 @@ const deriveKeyFromPassword = async (passwordString, body, creator, saltBuffer) 
       'Authorization': 'Bearer ' + global.DB_token,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(newUser)
+    body: newUserBody
   })
   .then(response => response.json())
   .then(data => {
@@ -135,7 +137,7 @@ const deriveKeyFromPassword = async (passwordString, body, creator, saltBuffer) 
   })
   .catch(error => {
     console.error(error);
-    console.log(JSON.stringify(newUser));
+    console.log(newUserBody);
     res.render('register', { title: 'User Add Error', message: error.message, data: error.data });
     return "error";
   })
