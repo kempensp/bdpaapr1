@@ -9,42 +9,10 @@ router.get('/', function(req, res, next) {
   res.render('register', { title: 'Products R Us Register' });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', async(req, res, next) => {
   console.log(JSON.stringify(req.body));
 
-  function createUser(body, salt, key, creator){
-    const newUser = {};
-    newUser.id=body.employeeNumber;
-    newUser.userName=body.username;
-    newUser.salt=salt;
-    newUser.key=key;
-    newUser.employeeNumber=body.employeeNumber;
-    newUser.createdBy=creator; //Put in your own.
-    newUser.modifiedBy=creator;
-    var userBody=JSON.stringify(newUser);
-    console.log("userBody", userBody);
-    const fetch = require('node-fetch'); //We may need to npm install this...
-    const varHttpRequest = 'https://bdpamkedev.com/api/v5/users';
-  fetch(varHttpRequest, {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + global.DB_token,
-      'Content-Type': 'application/json'
-    },
-    body: userBody
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Message & Data ", data);
-    res.render('register', { title: 'User Add Successful', message: data.message, data: data.data });
-  })
-  .catch(error => {
-    console.error(error);
-    console.log(userBody);
-    res.render('register', { title: 'User Add Error', message: error.message, data: error.data });
-    return "error";
-  })
-  };
+  
   // The API expects a 64 byte key (128 hex digits long):
 const KEY_SIZE_BYTES = 64;
 // The API expects a 16 byte salt (32 hex digits long):
@@ -150,26 +118,27 @@ const deriveKeyFromPassword = async (passwordString, body, creator, saltBuffer) 
     newUser.createdBy=creator; //Put in your own.
     newUser.modifiedBy=creator;
     console.log("generator call", JSON.stringify(newUser));
-  //     const fetch = require('node-fetch'); //We may need to npm install this...
-  //   const varHttpRequest = 'https://bdpamkedev.com/api/v5/users';
-  // fetch(varHttpRequest, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Authorization': 'Bearer ' + global.DB_token,
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(newUser)
-  // })
-  // .then(response => response.json())
-  // .then(data => {
-  //   console.log("Message & Data ", data);
-  //   res.render('register', { title: 'User Add Successful', message: data.message, data: data.data });
-  // })
-  // .catch(error => {
-  //   console.error(error);
-  //   res.render('register', { title: 'User Add Error', message: error.message, data: error.data });
-  //   return "error";
-  // })
+      const fetch = require('node-fetch'); //We may need to npm install this...
+    const varHttpRequest = 'https://bdpamkedev.com/api/v5/users';
+  fetch(varHttpRequest, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + global.DB_token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newUser)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Message & Data ", data);
+    res.render('register', { title: 'User Add Successful', message: data.message, data: data.data });
+  })
+  .catch(error => {
+    console.error(error);
+    console.log(JSON.stringify(newUser));
+    res.render('register', { title: 'User Add Error', message: error.message, data: error.data });
+    return "error";
+  })
  
   return { keyString, saltString };
 };
@@ -177,11 +146,9 @@ const deriveKeyFromPassword = async (passwordString, body, creator, saltBuffer) 
   // Get the salt and key from our password submitted
   passwordString=req.body.password;
   //console.log("PW=",passwordString);
-  const { keyString, saltString } = deriveKeyFromPassword(passwordString, req.body, "bdpa_adminscott");
+  const { keyString, saltString } = await deriveKeyFromPassword(passwordString, req.body, "bdpa_adminscott");
   console.log("keystring", keyString);
 
-
-  setTimeout(createUser,3000,req.body,saltString,keyString,"bdpa_adminscott");
 
   
   //res.render('register', { title: 'Products R Us Post-Register' });
