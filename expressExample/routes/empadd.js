@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   req.body.createdBy="bdpa_adminscott"; //Put in your own
   req.body.modifiedBy="bdpa_adminscott"; //Put in your own
-  const fetch = require('node-fetch'); //We may need to npm install this...
+  //We may need to npm install this...
   const varHttpRequest = 'https://bdpamkedev.com/api/v5/employees';
   fetch(varHttpRequest, {
     method: 'POST',

@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var crypto =require('crypto').webcrypto;
 
-var user_functions = require('../public/javascripts/user_functions');
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('register', { title: 'Products R Us Register' });
@@ -111,7 +109,7 @@ const deriveKeyFromPassword = async (passwordString, body, creator, saltBuffer) 
   // Return the key and salt as hexadecimal strings
   const newUser = {};
     newUser.id=body.employeeNumber;
-    newUser.Username=body.username; //
+    newUser.Username=body.username; // different capitalization
     newUser.salt=saltString;
     newUser.key=keyString;
     newUser.role=body.role;
