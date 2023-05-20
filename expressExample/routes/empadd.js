@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+const auth = require("../middleware/verifytoken");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('empadd', { title: 'Products Are Us Employee Add' });
+router.get('/', auth, function(req, res, next) {
+  var result=res.locals.result;
+  res.render('empadd', { title: 'Products Are Us Employee Add' , user: result});
 });
 
 router.post('/', function(req, res, next) {

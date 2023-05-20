@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var crypto =require('crypto').webcrypto;
+var jwt=require('jsonwebtoken');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -46,7 +47,7 @@ router.post('/', async(req, res, next) => {
     };
 
     // Turns a password (string) and salt (buffer) into a key and salt (hex strings)
-    const deriveKeyFromPassword = async (passwordString, keyTest, saltBuffer) => {
+    const deriveKeyFromPassword = async (passwordString, keyTest, saltBuffer, userName, role) => {
         // We'll use a TextEncoder to convert strings into arrays of bytes:
         const textEncoder = new TextEncoder('utf-8');
   
@@ -107,6 +108,13 @@ router.post('/', async(req, res, next) => {
   
         console.log("Comparison",keyString, keyTest);
             if (keyString==keyTest){
+                var token = jwt.sign({
+                    id: userName, role: role
+                  }, global.DB_token, {
+                    expiresIn: 86400
+                  });
+                  console.log(token);
+                  global.userToken=token; //Store into global
                 res.render('login', {title: 'Found User', message: 'Login successful'});
             }
             else{
@@ -138,9 +146,11 @@ router.post('/', async(req, res, next) => {
             var userSalt=data.salt;
             var userKey=data.key;
             var pwTest=req.body.password;
-            console.log("Credentials",userSalt,userKey,pwTest);
+            var userName=data.userName;
+            var role=data.role;
+            //console.log("Credentials",userSalt,userKey,pwTest);
             var userBuffer=convertHexToBuffer(userSalt);
-            const {keyresult,saltresult}=await deriveKeyFromPassword(pwTest,userKey,userBuffer);
+            const {keyresult,saltresult}=await deriveKeyFromPassword(pwTest,userKey,userBuffer,userName,role);
             
            
         }

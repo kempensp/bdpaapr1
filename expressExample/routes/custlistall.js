@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
+const auth = require("../middleware/verifytoken");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-
-    const httpRequest = require('http'); //This may end up being https in other situations
+router.get('/', auth, function(req, res, next) {
+    const result = res.locals.result;
+    if (result=="public"){
+       res.redirect('login');
+    }
+    else //We eventually want this separated into employee and admin cases 
+    {
+      const httpRequest = require('http'); //This may end up being https in other situations
 
     const options = {
       method: 'GET',
@@ -25,11 +31,13 @@ router.get('/', function(req, res, next) {
         let responseParsed=JSON.parse(responseData);
         let responseArray=responseParsed.records;
         //console.log('Response: ', responseArray); //debugging code to test
-        res.render('custlistall', { title: 'Products R Us Customer List' , resultarray: responseArray});
+        res.render('custlistall', { title: 'Products R Us Customer List' , resultarray: responseArray, user:result});
       });
     });
     request.on('error', error => console.log('ERROR', error));
     request.end();
+    }
+    
 });
 
 module.exports = router;

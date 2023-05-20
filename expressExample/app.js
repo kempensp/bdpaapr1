@@ -11,6 +11,8 @@ var loginRouter = require('./routes/login');
 var emplistallRouter = require('./routes/emplistall');
 var custlistallRouter = require('./routes/custlistall');
 var empaddRouter = require('./routes/empadd');
+var tokentestRouter= require('./routes/tokentest');
+//var verifyRouter = require('./middleware/verifytoken');
 
 var app = express();
 
@@ -31,6 +33,8 @@ app.use('/login', loginRouter);
 app.use('/emplistall', emplistallRouter);
 app.use('/custlistall', custlistallRouter);
 app.use('/empadd', empaddRouter);
+app.use('/tokentest', tokentestRouter);
+//app.use('/verifytoken', verifyRouter);
 // We could have an app.use('/index', indexRouter);
 
 // catch 404 and forward to error handler

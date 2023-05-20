@@ -18,6 +18,11 @@
                 <a class="nav-link-active" aria-current="page" href="/"> Home </a>
               </li>
               <!-- We will need to add a submenu for customer information and entry -->
+
+
+              <!-- We only show the customer option if the user is defined and is not public -->
+              <% if (typeof user != 'undefined' && user != 'public') { %>
+
               <li class="nav-item dropdown">
                 <!-- Set up "title" for dropdown menu section -->
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,6 +41,11 @@
                   <li><a class="dropdown-item" href="#"> Search </a></li> <!-- Last dropdown item-->
                 </ul>
               </li>
+               <% } %>
+
+
+
+
               <!-- We will also need to add a submenu for employee information and entry -->
               <li class="nav-item dropdown">
                 <!-- Set up employee "title" for dropdown menu section -->
@@ -68,6 +78,9 @@
               <!-- Link for login (Placeholder for now)-->
               <li class="nav-item">
                 <a class="nav-link-active" aria-current="page" href="/login"> Login </a>
+              </li>
+              <li>
+                <%= typeof user != 'undefined' ? user : 'No result created' %> 
               </li>
             </ul>
           </div> <!-- closes the collapse/navbar-collapse navbar content -->
