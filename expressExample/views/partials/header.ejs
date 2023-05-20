@@ -71,6 +71,9 @@
               </li>
               <!-- We may need to add a submenu for product information and entry -->
               <!-- We will need to add an About Us submenu-->
+
+
+            <% if (typeof user == 'undefined' || user == 'public') { %>
               <!-- Link for registration -->
               <li class="nav-item">
                 <a class="nav-link-active" aria-current="page" href="/register"> Register </a>
@@ -79,6 +82,14 @@
               <li class="nav-item">
                 <a class="nav-link-active" aria-current="page" href="/login"> Login </a>
               </li>
+            <% } %>
+
+            <% if (typeof user != 'undefined' && user != 'public') { %>
+              <li class="nav-item">
+                <a class="nav-link-active" aria-current="page" href="/logout"> Logout </a>
+              </li>
+            <% } %>
+
               <li>
                 <%= typeof user != 'undefined' ? user : 'No result created' %> 
               </li>

@@ -12,6 +12,7 @@ var emplistallRouter = require('./routes/emplistall');
 var custlistallRouter = require('./routes/custlistall');
 var empaddRouter = require('./routes/empadd');
 var tokentestRouter= require('./routes/tokentest');
+var logoutRouter= require('./routes/logout');
 //var verifyRouter = require('./middleware/verifytoken');
 
 var app = express();
@@ -34,6 +35,7 @@ app.use('/emplistall', emplistallRouter);
 app.use('/custlistall', custlistallRouter);
 app.use('/empadd', empaddRouter);
 app.use('/tokentest', tokentestRouter);
+app.use('/logout', logoutRouter);
 //app.use('/verifytoken', verifyRouter);
 // We could have an app.use('/index', indexRouter);
 
